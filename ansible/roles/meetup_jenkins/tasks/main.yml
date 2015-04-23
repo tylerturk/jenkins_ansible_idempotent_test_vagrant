@@ -1,0 +1,17 @@
+---
+# tasks file for ansible_jenkins
+
+- name: Ensure Jenkins Idempotency job directory
+  file: path=/var/lib/jenkins/jobs/Idempotency/ state=directory owner=jenkins group=jenkins
+  notify: restart jenkins
+
+- name: Write Jenkins Idempotency job config
+  copy: src=var/lib/jenkins/jobs/Idempotency/config.xml dest=/var/lib/jenkins/jobs/Idempotency/config.xml
+  notify: restart jenkins
+
+- name: Ensure /opt/docker exists
+  file: path=/opt/docker state=directory owner=jenkins group=jenkins mode=0775
+
+- name: Place dockerfile
+  copy: src=opt/docker/Dockerfile dest=/opt/docker/Dockerfile owner=jenkins group=jenkins
+  notify: build docker image

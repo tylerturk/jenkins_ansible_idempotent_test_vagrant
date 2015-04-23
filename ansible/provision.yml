@@ -1,0 +1,16 @@
+---
+
+- hosts: jenkinstest
+
+  vars:
+    jenkins_hostname: localhost
+    jenkins_jar_location: /opt/jenkins-cli.jar
+    jenkins_plugins:
+      - git
+      - job-dsl
+      - ssh
+
+  roles:
+    - { role: geerlingguy.jenkins }
+    - packages
+    - meetup_jenkins

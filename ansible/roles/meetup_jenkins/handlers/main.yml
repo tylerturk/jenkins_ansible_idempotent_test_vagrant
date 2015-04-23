@@ -1,0 +1,6 @@
+---
+# handlers file for ansible_jenkins
+
+# The docker_image module is deprecated in favor of docker but docker doesn't have build
+- name: build docker image
+  docker_image: path="/opt/docker/" name="meetup_jenkins/trusty" state=build timeout=1800 nocache=yes
