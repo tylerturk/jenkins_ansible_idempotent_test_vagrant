@@ -8,7 +8,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>https://github.com/tylerturk/ansible-pull-test</url>
+        <url>https://github.com/tylerturk/jenkins_ansible_idempotent_test</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>
@@ -28,8 +28,16 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>
-exit 0</command>
+      <command>CONTAINER=$(docker run -d -v &quot;/var/lib/jenkins/jobs/NonIdempotent/workspace:/build:rw&quot; meetup_jenkins/trusty /bin/bash -c &apos;cd /build; python not-idempotent.py&apos;)
+
+echo &quot;CONTAINER: $CONTAINER&quot;
+docker attach $CONTAINER
+
+RC=$(docker wait $CONTAINER)
+echo &quot;RC: $RC&quot;
+
+docker rm $CONTAINER
+exit $RC</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
