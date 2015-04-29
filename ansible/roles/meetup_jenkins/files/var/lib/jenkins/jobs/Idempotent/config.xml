@@ -28,7 +28,7 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>CONTAINER=$(docker run -d -v &quot;/var/lib/jenkins/jobs/Idempotent/workspace:/build:rw&quot; meetup_jenkins/trusty /bin/bash -c &apos;sleep 5; cd /build; python idempotent.py&apos;)
+      <command>CONTAINER=$(docker run -d -v &quot;/var/lib/jenkins/jobs/Idempotent/workspace:/build:rw&quot; meetup_jenkins/trusty /bin/bash -c &apos;sleep 5; cd /build; python idempotent.py --playbook=lineinfile.yml&apos;)
 
 echo &quot;CONTAINER: $CONTAINER&quot;
 docker attach $CONTAINER
