@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         jenkinstest.vm.provision "ansible" do |ansible|
             ansible.playbook = "ansible/provision.yml"
-            ansible.sudo = "True"
+            ansible.sudo = true
             ansible.verbose = "vvvv"
         end
     end
