@@ -23,8 +23,8 @@ ansible-galaxy install geerlingguy.jenkins
 
 ## Quick Start
 
-1. Clone this repository ```git clone https://github.com/tylerturk/jenkins_ansible_idempotent_test.git```
-2. cd in to the repository directory ```cd jenkins_ansible_idempotent_test```
+1. Clone this repository ```git clone https://github.com/tylerturk/jenkins_ansible_idempotent_test_vagrant.git```
+2. cd in to the repository directory ```cd jenkins_ansible_idempotent_test_vagrant```
 3. Bring your vagrant online ```vagrant up```
 4. Navigate to [your local jenkins] on your computer
 5. Profit?!?!?!

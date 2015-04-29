@@ -1,6 +1,14 @@
 ---
 # tasks file for ansible_jenkins
 
+- name: Ensure Jenkins WordPress job directory
+  file: path=/var/lib/jenkins/jobs/WordPress/ state=directory owner=jenkins group=jenkins
+  notify: restart jenkins
+
+- name: Write Jenkins WordPress job config
+  copy: src=var/lib/jenkins/jobs/WordPress/config.xml dest=/var/lib/jenkins/jobs/WordPress/config.xml
+  notify: restart jenkins
+
 - name: Ensure Jenkins NonIdempotent job directory
   file: path=/var/lib/jenkins/jobs/NonIdempotent/ state=directory owner=jenkins group=jenkins
   notify: restart jenkins
