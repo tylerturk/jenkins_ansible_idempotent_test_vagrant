@@ -5,6 +5,7 @@
   apt: name={{ item }} state=latest update_cache=yes
   with_items:
     - git
+    - python-pip
     - software-properties-common
 
 - name: Install pip in a way that does not break ansible
